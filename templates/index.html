@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>ColorBoard Game</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+	<div class="py-5 text-center">
+		<h2>ColorBoard Game</h2>
+		<p class="lead">Fill form.</p>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4 order-md-2 mb-4">
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted">Game examples</span>
+			</h4>
+			<ul class="list-group mb-3">
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<a href="/?case=1">
+						<h6 class="my-0">Test Case #1</h6>
+					</a>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<a href="/?case=2">
+						<h6 class="my-0">Test Case #2</h6>
+					</a>
+				</li>
+				<li class="list-group-item d-flex justify-content-between lh-condensed">
+					<a href="/?case=3">
+						<h6 class="my-0">Test Case #3</h6>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-8 order-md-1 mt-3">
+
+			<form class="needs-validation" action="{% url 'game' %}" method="post">
+				{% csrf_token %}
+				<div class="mb-3">
+					<label for="username">Players</label>
+					<div class="input-group">
+						{{ form.players }}
+						<div class="invalid-feedback" style="width: 100%;">
+							Players is required.
+						</div>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="username">Squares</label>
+					<div class="input-group">
+						{{ form.squares }}
+						<div class="invalid-feedback" style="width: 100%;">
+							Squares is required.
+						</div>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="username">Cards</label>
+					<div class="input-group">
+						{{ form.cards }}
+						<div class="invalid-feedback" style="width: 100%;">
+							Cards is required.
+						</div>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="username">Sequence</label>
+					<div class="input-group">
+						{{ form.sequence }}
+						<div class="invalid-feedback" style="width: 100%;">
+							Sequence is required.
+						</div>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label for="username">Card list</label>
+					<div class="input-group">
+						{{ form.cardList }}
+						<div class="invalid-feedback" style="width: 100%;">
+							Card list is required.
+						</div>
+					</div>
+				</div>
+
+				<hr class="mb-4">
+				<button class="btn btn-primary btn-lg btn-block" type="submit">Check result</button>
+			</form>
+
+			{% if game %}
+				<div class="alert alert-info mt-3" role="alert">
+					{{ game.result }}
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	<footer class="my-5 pt-5 text-muted text-center text-small">
+		<p class="mb-1">&copy; 2018 Stepan Kravetskyi</p>
+	</footer>
+</div>
+</body>
+</html>
